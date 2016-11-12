@@ -3,8 +3,6 @@
 	
   <head>
   <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase-storage.js"></script>
 <script>
   // Initialize Firebase
   var config = {
@@ -57,27 +55,76 @@
 	  var image;
 	  var severity;
 	  var add;
+	  var arr = [""];
 	  var ref = firebase.database().ref();
-		ref.once('Post', function(snapshot) {
-		  snapshot.forEach(function(childSnapshot) {
+		var query = firebase.database().ref("users").orderByKey();
+				ref.once("child_added")
+		  .then(function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
+			arr.push(childData);
+			/*
+			  // key will be "ada" the first time and "alan" the second time
+			  var key = childSnapshot.key;
+			  // childData will be the actual contents of the child
+			  var childData = childSnapshot.val();
+			  //var childData = childSnapshot.val();
+			//var cfat = childData.childSnapshot.val();
 			if(count == 0){
 				phone = childData;
+				console.log(phone);
 			}else if(count == 1){
 				add = childData;
+				console.log(add);
 			}else if(count == 2){
 				childData+="";
 				if(childData == "1"){
 					severity = "mild";
+					
 				}else if(childData == "2"){
 					severity = "moderate";
 				}else if(childData == "1"){
 					severity = "severe";
 				}
+				console.log(severity);
+			} 
+			count++;
+			console.log(count);
+			*/
+			count++;
+			console.log(arr[count]);
+		  });
+		});
+		/*
+		//ref.once('child_added', function(snapshot) {
+		
+		query.once("post")
+		.then(function(snapshot)){
+		  snapshot.forEach(function(childSnapshot) {
+			var childData = childSnapshot.val();
+			//var cfat = childData.childSnapshot.val();
+			if(count == 0){
+				phone = childData;
+				console.log(phone);
+			}else if(count == 1){
+				add = childData;
+				console.log(add);
+			}else if(count == 2){
+				childData+="";
+				if(childData == "1"){
+					severity = "mild";
+					
+				}else if(childData == "2"){
+					severity = "moderate";
+				}else if(childData == "1"){
+					severity = "severe";
+				}
+				console.log(severity);
 			} 
 			count++
 		  });
 		});
+		*/
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTYysNSi-__NAMakQlwtW0Z3SQiPiq3oc&callback=initMap"
     async defer></script>
