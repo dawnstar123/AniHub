@@ -1,4 +1,4 @@
-function start(animalName){
+function createCard(animalName){
     $(document).ready(function(){
         $('body').append("<div class='card'>\
         <img src='img_avatar2.png' alt='Avatar' style='width:100%'>\
@@ -9,6 +9,6 @@ function start(animalName){
 </div>");
     })
 }
-start("Your mother");
-start("Your father");
-start("your mother");
+createCard("Your mother");
+createCard("Your father");
+createCard("your mother");
